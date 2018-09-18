@@ -5,33 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <title>BMI</title>
 </head>
 
 <body>
-    身高(cm)): <input type="text" id="height" value="180"><br>
-    體重(kg): <input type="text" id="weight" value="85"><br>
-    <button onclick="calcBmi()">計算</button>
+
+    <form>
+        <div class="form-group">
+            <label for="InputHeight">身高(cm)</label>
+            <input type="height" class="form-control" id="InputHeight" placeholder="Enter your Height">
+        </div>
+        <div class="form-group">
+            <label for="InputWeight">體重(kg)</label>
+            <input type="weight" class="form-control" id="InputWeight" placeholder="Enter your Weight">
+        </div>
+        <button type="button" class="btn btn-outline-secondary" onclick="calcBmi()">Count</button>
+    </form>
+
     <hr>
 
-    BMI: <span id="bmi"></span> <br>
+    Your BMI is : <span id="bmi"></span> <br>
     <script>
         function calcBmi() {
-            var h = document.getElementById("height").value;
+            var h = document.getElementById("InputHeight").value;
             h = parseFloat(h) / 100;
 
-            var w = document.getElementById("weight").value;
+            var w = document.getElementById("InputWeight").value;
             w = parseFloat(w);
 
             bmi = w / (h * h);
             if (bmi < 18.5) {
-                ans = "體重過輕";
+                ans = "過輕，宵夜該吃泡麵阿";
             } else if (bmi > 24) {
-                ans = "體重過重";
+                ans = "過重，運動吧...";
             } else if (bmi >= 18.5 && bmi <= 24) {
-                ans = "體重正常";
+                ans = "正常，棒棒!";
             }
-            document.getElementById("bmi").innerText = Math.round(bmi*100)/100 + ans;
+            document.getElementById("bmi").innerHTML = Math.round(bmi * 100) / 100 + "<br>" + ans;
         }
     </script>
 </body>
